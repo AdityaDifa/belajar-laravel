@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('moments', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->string('streamer_name');
-            $table->string('stream_url')->nullable(); // Boleh kosong
-            $table->text('description');
-            $table->timestamps(); // create_at & updated_at
+            
+            $table->string('name');
+            $table->string('title')->nullable();
+            $table->string('bio')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('moments');
+        Schema::dropIfExists('profiles');
     }
 };
