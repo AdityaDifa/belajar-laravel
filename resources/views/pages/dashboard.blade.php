@@ -1,5 +1,5 @@
 @extends('master')
 
-@section('mainContent')
-
+@section('content')
+    <h1>ini dashborad</h1>
 @endsection

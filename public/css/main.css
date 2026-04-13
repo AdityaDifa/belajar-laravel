@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Miranda+Sans:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+body{
+    font-family: "Miranda Sans", sans-serif;
+    background-color: #FEC5F6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    flex:1
+}
+
+button{
+    background-color: white;
+    border: 0;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+main{
+    margin: 20px 80px;
+}
