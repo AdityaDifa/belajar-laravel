@@ -30,6 +30,6 @@ class RegisterController extends Controller
             'title' => $request->title // Kita masukkan 'title' ke kolom bio/sebutan tadi
         ]);
 
-        return redirect()->route('login.index')->with('success', 'Registrasi berhasil!');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil!');
     }
 }

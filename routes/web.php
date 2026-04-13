@@ -9,7 +9,7 @@ use App\Http\Controllers\MomentController;
 use App\Http\Controllers\RegisterController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('home');
-Route::get('/create-note', [CreateNoteController::class, 'index'])->name('createNote');
+
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -19,4 +19,9 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class,'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::resource('moments', MomentController::class);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/create-note', [MomentController::class, 'index'])->name('createNote');
+    Route::post('/create-note', [MomentController::class, 'store'])->name('createNote.create');
+    // Semua route di dalam sini otomatis terjaga oleh satpam 'auth'
+});

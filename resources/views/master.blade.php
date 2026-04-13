@@ -6,9 +6,44 @@
     <title>Gudang Clipper</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/main.css')  }}">
+
+    <style>
+    /* 1. Default: Sembunyikan pesan peringatan di layar lebar */
+    .mobile-warning {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 20px;
+        background-color: #571a46;
+        color: white;
+    }
+
+    /* 2. Logika ketika lebar layar di bawah 1000px */
+    @media (max-width: 900px) {
+        /* Munculkan pesan peringatan */
+        .mobile-warning {
+            display: flex;
+        }
+
+        /* Sembunyikan semua konten website utama */
+        main, nav, footer {
+            display: none !important;
+        }
+    }
+</style>
+
     @stack('styles')
 </head>
 <body class="d-flex flex-column min-vh-100">
+
+    <div class="mobile-warning">
+        <h1>Oops! 🚫</h1>
+        <p>Gudang Clipper saat ini hanya optimal dibuka melalui Laptop atau Desktop (layar lebar).</p>
+    </div>
+
     @include('layouts.navbar')
 
     <main>
@@ -20,5 +55,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     @stack('scripts')
+
+    <script>
+
+    </script>
 </body>
 </html>
