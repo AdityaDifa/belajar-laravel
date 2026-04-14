@@ -13,7 +13,8 @@ class MomentController extends Controller
         return view('pages.createNote');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'title' => 'required|string|max:255',
             'streamer_name' => 'required|string|max:255',
@@ -32,4 +33,67 @@ class MomentController extends Controller
         return redirect()->route('createNote.create')->with('success', 'Note berhasil ditambahkan!');
     }
 
+    public function detailNote($id)
+    {
+        $note = Moment::findOrFail($id);
+
+        return view('pages.detailNote', compact('note'));
+    }
+
+    public function deleteNote($id)
+    {
+        $note = Moment::findOrFail($id);
+
+        if ($note->user_id !== Auth::id()) {
+            // Jika bukan, kasih error 403 (Forbidden)
+            abort(403, 'Waduh, kamu nggak boleh hapus catatan orang lain ya!');
+        }
+
+        $note->delete();
+
+        return redirect()->route('home')->with('success', 'Catatan berhasil dihapus!');
+    }
+
+    public function editNote($id)
+    {
+
+        $note = Moment::findOrFail($id);
+
+        if ($note->user_id !== Auth::id()) {
+            // Jika bukan, kasih error 403 (Forbidden)
+            abort(403, 'Waduh, kamu nggak boleh edit catatan orang lain ya!');
+        }
+
+        return view('pages.editNote', compact('note'));
+    }
+
+    public function putNote($id, Request $request)
+    {
+        // 1. Cari datanya
+        $note = Moment::findOrFail($id);
+
+        // 2. Validasi kepemilikan lagi (Penting untuk keamanan!)
+        if ($note->user_id !== Auth::id()) {
+            abort(403, 'Waduh, kamu nggak boleh edit catatan orang lain ya!');
+        }
+
+        // 3. Validasi input form
+        $request->validate([
+            'title' => 'required|max:255',
+            'streamer_name' => 'required',
+            'stream_url' => 'required|url',
+            'description' => 'required',
+        ]);
+
+        // 4. Update datanya
+        $note->update([
+            'title' => $request->title,
+            'streamer_name' => $request->streamer_name,
+            'stream_url' => $request->stream_url,
+            'description' => $request->description,
+        ]);
+
+        // 5. Redirect balik ke halaman detail dengan pesan sukses
+        return redirect()->route('detailNote', $note->id)->with('success', 'Catatan berhasil diperbarui!');
+    }
 }

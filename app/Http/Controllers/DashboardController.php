@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Moment;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        return view('pages.dashboard');
+    public function index(Request $request){
+        $keyword = $request->input('search');
+
+        $query = Moment::query();
+
+        if ($keyword) {
+            $query->where(function ($q) use ($keyword) {
+                $q->where('title', 'like', "%{$keyword}%")
+                    ->orWhere('streamer_name', 'like', "%{$keyword}%")
+                    ->orWhere('description', 'like', "%{$keyword}%");
+            });
+        }
+
+        $notes = $query->latest()->paginate(10)->withQueryString();
+
+        return view('pages.dashboard', compact('notes'));
     }
 }

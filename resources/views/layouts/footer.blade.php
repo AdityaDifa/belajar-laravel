@@ -10,5 +10,5 @@
 </style>
 
 <footer class="bottom-footer">
-    <p>© 2026 Gudang Clipper | Terima kasih yang sudah berkontribusi pada catatan clip streamer</p>
+    <p>© 2026 Gudang Clipper | Terima kasih yang sudah berkontribusi pada catatan clip streamer | Alpha Version 0.1.0</p>
 </footer>
