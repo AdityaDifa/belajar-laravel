@@ -13,6 +13,8 @@ Route::get('/notes/{id}', [MomentController::class, 'detailNote'])->name('detail
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+Route::view('/logs', 'pages.logs')->name('logs');
+
 Route::view('/rules', 'pages.rules')->name('rules');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');

@@ -21,7 +21,7 @@
         padding: 8px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 4px;
         border-radius: 8px;
         cursor: pointer;
     }
@@ -31,13 +31,13 @@
     }
 
     .notes-title {
-        font-size: 24px;
+        font-size: 20px;
         color: #571a46;
         font-weight: 600;
     }
 
     .notes-second-title {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 400;
     }
 
@@ -72,6 +72,8 @@
     .truncate-link:hover {
         text-decoration: underline;
     }
+
+    
 </style>
 
 @endpush
@@ -110,7 +112,7 @@
     @endforelse
 </div>
 
-<div class="d-flex justify-content-center mt-4">
+<div style="margin-top: 20px;">
     {{ $notes->links() }}
 </div>
 

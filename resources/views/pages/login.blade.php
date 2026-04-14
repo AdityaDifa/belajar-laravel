@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">Register</button>
+        <button class="btn btn-primary" type="submit">Login</button>
 
         @if ($errors->any())
         <div class="alert alert-danger">

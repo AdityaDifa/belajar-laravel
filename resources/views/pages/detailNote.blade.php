@@ -14,6 +14,12 @@
 
 @section('content')
 
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <h1 style="font-size: 24px;font-weight:600">{{ $note->title }}</h1>
 
 <div class="detail-container">
@@ -43,7 +49,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                
+
                 <form action="{{ route('note.delete', $note->id) }}" method="POST">
                     @csrf
                     @method('PUT')

@@ -1,0 +1,79 @@
+@extends('master')
+
+@push('styles')
+<style>
+    .update-container {
+        padding-left: 20px;
+        border-left: 2px solid #571a46;
+        /* Warna garis ungu kamu */
+        margin-left: 10px;
+    }
+
+    .update-item {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 20px;
+    }
+
+    .dot {
+        position: absolute;
+        left: -31px;
+        /* Sesuaikan agar pas di tengah garis */
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background-color: #571a46;
+        border: 4px solid #fff;
+        /* Biar ada jarak antara lingkaran dan garis */
+        border-radius: 50%;
+    }
+
+    .undot {
+        position: absolute;
+        left: -31px;
+        /* Sesuaikan agar pas di tengah garis */
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border: 4px solid #fff;
+        /* Biar ada jarak antara lingkaran dan garis */
+        border-radius: 50%;
+    }
+
+    .update-item:last-child {
+        margin-bottom: 0;
+    }
+</style>
+@endpush
+
+@section('content')
+<div class="update-container">
+    <div class="update-item">
+        <div class="dot"></div>
+        <div class="content">
+            <small class="text-muted">14 April 2026</small>
+            <h6>Update Alpha Version 0.1.0 First Release</h6>
+            <p>Fitur masih sangat basic dan sangat terbatas</p>
+        </div>
+    </div>
+
+    <div class="update-item">
+        <div class="undot"></div>
+        <div class="content">
+            <small class="text-muted">Next Upate</small>
+            <h6>Alpha Version 0.2.0 Adding Feature</h6>
+            <p>Memperbaiki tampilan menjadi lebih modern dan menambah fitur yang berguna bagi user seperti simpan, dan lain-lain</p>
+        </div>
+    </div>
+
+    <div class="update-item">
+        <div class="undot"></div>
+        <div class="content">
+            <small class="text-muted">Next Upate</small>
+            <h6>Alpha Version 0.3.0 Adding Feature</h6>
+            <p>Menambah fitur interaksi antar user seperti like, dislike, melihat profile orang, dll</p>
+        </div>
+    </div>
+</div>
+@endsection
