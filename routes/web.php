@@ -12,6 +12,8 @@ Route::get('/', [DashboardController::class, 'index'])->name('home');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+Route::view('/rules', 'pages.rules')->name('rules');
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 

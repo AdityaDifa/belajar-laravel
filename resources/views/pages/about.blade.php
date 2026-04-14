@@ -77,7 +77,7 @@
         <h1>Support Me</h1>
         <div style="display: flex; gap: 12px;justify-content:center">
             <p style=" color:#571a46;font-size:16px">Kalian bisa support saya melalui </p>
-            <a style=" color:#571a46;font-size:16px;" href="https://saweria.co/goseclips">Click Me</a>
+            <a style=" color:#571a46;font-size:16px;" href="https://saweria.co/goseclips" target="_blank">Click Me</a>
         </div>
     </div>
 @endsection

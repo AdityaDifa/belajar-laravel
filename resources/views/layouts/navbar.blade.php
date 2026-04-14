@@ -9,7 +9,7 @@
 
     .left-nav {
         display: flex;
-        gap: 24px;
+        gap: 16px;
         align-items: center;
     }
 
@@ -55,6 +55,7 @@
         <a class="{{Route::is('home') ? 'active-link' : 'navbar-link'  }}" href="{{ route('home') }}">Home</a>
         <a class="{{Route::is('create-note') ? 'active-link' : 'navbar-link'  }}" href="{{ route('createNote') }}">Create Note</a>
         <a class="{{Route::is('about') ? 'active-link' : 'navbar-link'  }}" href="{{ route('about') }}">about</a>
+        <a class="{{Route::is('rules') ? 'active-link' : 'navbar-link'  }}" href="{{ route('rules') }}">Rules</a>
     </div>
 
     <div class="right-nav">
