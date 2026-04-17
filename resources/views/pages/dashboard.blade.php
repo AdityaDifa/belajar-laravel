@@ -5,7 +5,8 @@
 <style>
     .search-container {
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .notes-container {
@@ -16,7 +17,7 @@
     }
 
     .notes-card {
-        background-color: #DB8DD0;
+        background-color: white;
         border-left: 4px solid #571a46;
         padding: 8px;
         display: flex;
@@ -24,10 +25,11 @@
         gap: 4px;
         border-radius: 8px;
         cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
     .notes-card:hover {
-        background-color: #C562AF;
+        background-color: gainsboro;
     }
 
     .notes-title {
@@ -41,7 +43,7 @@
         font-weight: 400;
     }
 
-    .card-description {
+    .notes-description {
         white-space: nowrap;
         /* Mencegah teks turun ke baris baru */
         overflow: hidden;
@@ -52,6 +54,10 @@
         /* Opsional: Tentukan lebar maksimal jika card-nya tidak punya lebar tetap */
         max-width: 100%;
         display: block;
+    }
+        
+    .notes-you{
+        font-weight: 600;
     }
 
     .truncate-link {
@@ -79,6 +85,10 @@
 @endpush
 @section('content')
 <div class="search-container">
+    <div>
+        <p>Total Notes : {{ $totalNotes }}</p>
+    </div>
+
     <form action="{{ route('home') }}" method="GET">
         <div class="input-group">
             <input type="text" name="search" class="form-control" style="width:300px"
@@ -104,7 +114,8 @@
         <a class="truncate-link" href="{{ $note->stream_url }}" target="_blank" onclick="event.stopPropagation();">
             {{ $note->stream_url }}
         </a>
-        <p class="card-description">{{ $note->description }}</p>
+        <p class="notes-description">{{ $note->description }}</p>
+        <span class="notes-creator">Created by <span class="{{ auth()->id() == $note->user->user_id ? 'notes-you' : '' }}">{{ auth()->id() == $note->user->user_id ? "You" : $note->user->name }}</span></span>
     </div>
     @empty
     <h1 style="font-size:32px;">Notes tidak ditemukan</h1>

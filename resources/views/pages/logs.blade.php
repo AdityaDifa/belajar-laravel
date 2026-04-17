@@ -7,11 +7,13 @@
         border-left: 2px solid #571a46;
         /* Warna garis ungu kamu */
         margin-left: 10px;
+        display: flex;
+        flex-direction: column-reverse;
+        gap:20px;
     }
 
     .update-item {
         position: relative;
-        margin-bottom: 30px;
         padding-left: 20px;
     }
 

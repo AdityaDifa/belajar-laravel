@@ -70,7 +70,7 @@
 
         <div class="input-form">
             <label for="stream_url" class="form-label">stream url</label>
-            <input type="text" class="form-control" name="stream_url" id="stream_url" value="{{ old('stream_url') }}" placeholder="stream url/ link stream" required>
+            <input type="text" class="form-control" name="stream_url" id="stream_url" value="{{ old('stream_url') }}" placeholder="stream url/ link stream" required maxlength="255">
             <span id="url-error" style="color: #ff4d4d; font-size: 0.8rem; display: none;">
                 URL harus berasal dari YouTube (youtube.com atau youtu.be)
             </span>
@@ -78,7 +78,7 @@
 
         <div class="input-form">
             <label for="description" class="form-label">description</label>
-            <textarea class="form-control" name="description" id="description" value="{{ old('description') }}" placeholder="description" required></textarea>
+            <textarea class="form-control" name="description" id="description" placeholder="description" required maxlength="2000">{{ old('description') }}</textarea>
             <span id="desc-error" style="color: red; font-size: 0.8rem; display: none;">
                 Deskripsi tidak diperbolehkan mengandung link/URL!
             </span>

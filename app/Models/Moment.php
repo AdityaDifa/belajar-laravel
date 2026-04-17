@@ -13,4 +13,10 @@ class Moment extends Model
         'stream_url', 
         'description'
     ];
+
+    public function user()
+{
+    // Asumsi di tabel moments ada kolom user_id
+    return $this->belongsTo(Profile::class, 'user_id');
+}
 }
