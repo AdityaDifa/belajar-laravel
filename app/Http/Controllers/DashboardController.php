@@ -17,8 +17,8 @@ class DashboardController extends Controller
                 $q->where('title', 'like', "%{$keyword}%")
                     ->orWhere('streamer_name', 'like', "%{$keyword}%")
                     ->orWhere('description', 'like', "%{$keyword}%")
-                    ->orWhereHas('user.profile', function ($q) use ($keyword) {
-                        $q->where('nama', 'like', "%{$keyword}%");
+                    ->orWhereHas('user', function ($q) use ($keyword) {
+                        $q->where('name', 'like', "%{$keyword}%");
                     });
             });
         }

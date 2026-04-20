@@ -6,20 +6,20 @@
         background-color: white;
         padding: 20px;
         margin-top: 20px;
-        color: #B33791;
+        color: var(--main);
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    .table-detail{
+    .table-detail {
         width: 100%;
     }
-    
-    .table-detail tr{
-        border: 1px solid #B33791;
+
+    .table-detail tr {
+        border: 1px solid var(--main);
     }
-    
-    .table-detail tr td{
+
+    .table-detail tr td {
         padding: 4px;
     }
 </style>
@@ -48,6 +48,11 @@
         </tr>
         <tr>
             <td>
+                <h2 style="font-size: 16px;">Created by : {{ $note->user->name }}</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <p>Link : <a href="{{ $note->stream_url }}" target="_blank" style="color: #B33791;text-decoration:underline">{{ $note->stream_url }}</a></p>
             </td>
         </tr>
@@ -58,6 +63,16 @@
             </td>
         </tr>
     </table>
+
+    <div style="display: flex;justify-content: space-between;">
+        <p>
+            @if ($note->created_at->ne($note->updated_at))
+            updated at {{ $note->updated_at->diffForHumans() }}
+            @endif
+        </p>
+        <p>created at {{ $note->created_at->diffForHumans() }}</p>
+    </div>
+
     @if(auth()->check() && auth()->id() == $note->user_id)
     <div style="display: flex; gap:8px;margin-top:20px">
         <button id="editNote" type="button" class="btn btn-primary" onclick="editNote('{{ $note->id }}')">Edit</button>

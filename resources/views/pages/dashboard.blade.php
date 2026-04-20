@@ -18,7 +18,7 @@
 
     .notes-card {
         background-color: white;
-        border-left: 4px solid #571a46;
+        border-left: 4px solid var(--main);
         padding: 8px;
         display: flex;
         flex-direction: column;
@@ -34,7 +34,7 @@
 
     .notes-title {
         font-size: 20px;
-        color: #571a46;
+        color: var(--second);
         font-weight: 600;
     }
 
@@ -79,7 +79,9 @@
         text-decoration: underline;
     }
 
-    
+    .notes-creator{
+        text-align: end;
+    }
 </style>
 
 @endpush
@@ -93,29 +95,35 @@
         <div class="input-group">
             <input type="text" name="search" class="form-control" style="width:300px"
                 placeholder="Cari judul atau streamer..."
-                value="{{ request('search') }}"> <button class="btn btn-primary" type="submit" style="background-color: #571a46; border:none;">
-                Cari
+                value="{{ request('search') }}"> 
+                <button class="btn btn-primary" type="submit" style="background-color: var(--main); border:none;">
+                    Cari
+                </button>
         </div>
     </form>
 </div>
-
-@if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
 
 <div class="notes-container">
     @forelse($notes as $note)
 
     <div class="notes-card" onclick="openNote('{{ $note->id }}')">
-        <h1 class="notes-title">{{ $note->title }}</h1>
+        <div style="display: flex;justify-content: space-between">
+            <h1 class="notes-title" style="flex: 4;">{{ $note->title }}</h1>
+            <span class="notes-creator" style="flex:1">Created by <span class="{{ auth()->id() == $note->user->user_id ? 'notes-you' : '' }}">{{ auth()->id() == $note->user->user_id ? "You" : $note->user->name }}</span></span>
+        </div>
         <h2 class="notes-second-title">{{ $note->streamer_name }}</h2>
         <a class="truncate-link" href="{{ $note->stream_url }}" target="_blank" onclick="event.stopPropagation();">
             {{ $note->stream_url }}
         </a>
         <p class="notes-description">{{ $note->description }}</p>
-        <span class="notes-creator">Created by <span class="{{ auth()->id() == $note->user->user_id ? 'notes-you' : '' }}">{{ auth()->id() == $note->user->user_id ? "You" : $note->user->name }}</span></span>
+        <div style="display: flex;justify-content: space-between;">
+            <p>
+                @if ($note->created_at->ne($note->updated_at))
+                    updated at {{ $note->updated_at->diffForHumans() }}
+                @endif
+            </p>
+            <p>created at {{ $note->created_at->diffForHumans() }}</p>
+        </div>
     </div>
     @empty
     <h1 style="font-size:32px;">Notes tidak ditemukan</h1>

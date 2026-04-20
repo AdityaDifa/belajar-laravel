@@ -1,6 +1,6 @@
 <style>
     .top-nav {
-        background-color: #B33791;
+        background-color: var(--main);
         padding: 10px 80px;
         display: flex;
         justify-content: space-between;
@@ -25,7 +25,7 @@
     .title-nav {
         font-size: 32px;
         font-weight: 800;
-        color: #FEC5F6;
+        color: var(--third);
 
         user-select: none;
         -webkit-user-select: none;
@@ -37,6 +37,7 @@
         color: white;
         font-weight: 400;
         cursor: pointer;
+        transition: transform 0.1s ease-in-out;
     }
 
     .active-link {
@@ -44,11 +45,13 @@
         font-size: 16px;
         color: white;
         cursor: pointer;
+        transition: transform 0.1s ease-in-out;
+
     }
 
     .navbar-link:hover,
     .active-link:hover {
-        font-size: 20px !important;
+        transform :scale(1.2)
     }
 
 </style>

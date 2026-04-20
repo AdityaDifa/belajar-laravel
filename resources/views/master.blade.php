@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gudang Clipper</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('css/theme-variable.css')  }}">
     <link rel="stylesheet" href="{{asset('css/main.css')  }}">
+    <link rel="shortcut icon" href="{{ asset('images/icons/icon-gudang-clipper.png') }}" type="image/x-icon">
 
     <style>
     /* 1. Default: Sembunyikan pesan peringatan di layar lebar */
@@ -17,7 +20,7 @@
         height: 100vh;
         text-align: center;
         padding: 20px;
-        background-color: #571a46;
+        background-color: var(--main);
         color: white;
     }
 
@@ -47,6 +50,7 @@
     @include('layouts.navbar')
 
     <main>
+        @include('components.sessionMessage')
         @yield('content')
     </main>
 

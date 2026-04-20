@@ -35,7 +35,7 @@ class MomentController extends Controller
 
     public function detailNote($id)
     {
-        $note = Moment::findOrFail($id);
+        $note = Moment::with('user')->findOrFail($id);
 
         return view('pages.detailNote', compact('note'));
     }

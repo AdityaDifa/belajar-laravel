@@ -43,22 +43,6 @@
 
         <h1 style="text-align: center;">Edit Notes Form</h1>
 
-        @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
-
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
         <div class="input-form">
             <label for="title" class="form-label">Title/Judul</label>
             <input type="text" class="form-control" name="title" id="title" value="{{ $note->title }}" placeholder="Title/ Judul" maxlength="255" required>
