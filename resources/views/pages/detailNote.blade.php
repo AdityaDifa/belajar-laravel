@@ -64,19 +64,28 @@
         </tr>
     </table>
 
-    <div style="display: flex;justify-content: space-between;">
-        <p>
+    <div style="display: flex;justify-content: space-between;font-size:12px">
+        <span>
             @if ($note->created_at->ne($note->updated_at))
+            <i class="bi bi-calendar"></i>
             updated at {{ $note->updated_at->diffForHumans() }}
             @endif
-        </p>
-        <p>created at {{ $note->created_at->diffForHumans() }}</p>
+        </span>
+        <span>
+            <i class="bi bi-calendar"></i>
+            created at {{ $note->created_at->diffForHumans() }}</span>
     </div>
 
     @if(auth()->check() && auth()->id() == $note->user_id)
-    <div style="display: flex; gap:8px;margin-top:20px">
-        <button id="editNote" type="button" class="btn btn-primary" onclick="editNote('{{ $note->id }}')">Edit</button>
-        <button id="deleteNote" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+    <div style="display: flex;justify-content:space-between; margin-top:20px;align-items:center">
+        <div style="display: flex; gap: 8px;">
+            <button id="editNote" type="button" class="btn btn-primary" onclick="editNote('{{ $note->id }}')">Edit</button>
+            <button id="deleteNote" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+        </div>
+        <div>
+            <button><i class="bi bi-hand-thumbs-up"></i></button>
+            <button><i class="bi bi-hand-thumbs-down"></i></button>
+        </div>
     </div>
     @endif
 </div>

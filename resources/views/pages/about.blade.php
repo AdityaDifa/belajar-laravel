@@ -11,7 +11,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        background-color: #C562AF;
+        background-color: var(--second);
         padding: 20px;
         border-radius: 20px;
     }
@@ -30,7 +30,7 @@
 
     .myself-section h1, .support-section h1{
         font-size: 64px;
-        color:#571a46;
+        color:var(--main);
         text-align: center;
     }
     #youtube-icon{

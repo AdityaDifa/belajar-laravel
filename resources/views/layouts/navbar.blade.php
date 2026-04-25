@@ -51,9 +51,8 @@
 
     .navbar-link:hover,
     .active-link:hover {
-        transform :scale(1.2)
+        transform: scale(1.2)
     }
-
 </style>
 <nav class="top-nav">
     <div class="left-nav">
@@ -66,6 +65,10 @@
     </div>
 
     <div class="right-nav">
+        <form data-url="{{ url('/profile') }}" id="form-search-profile" style="max-width: 150px;height:60px;display:flex;align-items:center">
+            <input type="text" class="form-control form-control-sm" id="search-profile" placeholder="search profile">
+        </form>
+
         @guest
         <a class="{{Route::is('register') ? 'active-link' : 'navbar-link'  }}" href="{{ route('register') }}">Register</a>
         <a class="{{Route::is('login') ? 'active-link' : 'navbar-link'  }}" href="{{ route('login') }}">Login</a>
@@ -80,3 +83,21 @@
         @endauth
     </div>
 </nav>
+
+@push('scripts')
+<script>
+    $('#form-search-profile').on('submit', function(e) {
+        e.preventDefault();
+        let baseUrl = $(this).data('url');
+        let nameSearch = $('#search-profile').val();
+
+        if (nameSearch.trim() !== "") {
+            let slug = nameSearch.toLowerCase()
+                .trim()
+                .replace(/\s+/g, '-');
+
+            window.location.href = baseUrl + "/" + slug;
+        }
+    })
+</script>
+@endpush

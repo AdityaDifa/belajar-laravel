@@ -82,13 +82,17 @@
     .notes-creator{
         text-align: end;
     }
+
+    .search-btn:hover{
+        background-color: var(--second) !important;
+    }
 </style>
 
 @endpush
 @section('content')
 <div class="search-container">
     <div>
-        <p>Total Notes : {{ $totalNotes }}</p>
+        <p style="font-weight: 600;">Total Notes : {{ $totalNotes }}</p>
     </div>
 
     <form action="{{ route('home') }}" method="GET">
@@ -96,7 +100,7 @@
             <input type="text" name="search" class="form-control" style="width:300px"
                 placeholder="Cari judul atau streamer..."
                 value="{{ request('search') }}"> 
-                <button class="btn btn-primary" type="submit" style="background-color: var(--main); border:none;">
+                <button class="btn btn-primary search-btn" type="submit" style="background-color: var(--main); border:none;">
                     Cari
                 </button>
         </div>
@@ -116,13 +120,17 @@
             {{ $note->stream_url }}
         </a>
         <p class="notes-description">{{ $note->description }}</p>
-        <div style="display: flex;justify-content: space-between;">
-            <p>
+        <div style="display: flex;justify-content: space-between;font-size:12px">
+            <span>
                 @if ($note->created_at->ne($note->updated_at))
+                    <i class="bi bi-calendar"></i>
                     updated at {{ $note->updated_at->diffForHumans() }}
                 @endif
-            </p>
-            <p>created at {{ $note->created_at->diffForHumans() }}</p>
+            </span>
+            <span>
+                <i class="bi bi-calendar"></i>
+                created at {{ $note->created_at->diffForHumans() }}
+            </span>
         </div>
     </div>
     @empty

@@ -42,10 +42,17 @@
             <label for="password" class="form-label">Password</label>
             <div class="input-group">
                 <input type="password" name="password" class="form-control" id="password" placeholder="password" maxlength="255">
-                <button class="btn btn-outline-secondary"  type="button" id="togglePassword">
+                <button class="btn btn-outline-secondary" style="width: 70px;" type="button" id="togglePassword">
                     Show
                 </button>
             </div>
+        </div>
+
+        <div>
+            <div style="border-top: 1px solid black;margin:2px 0"></div>
+            <p style="font-size: 12px;color:red;">
+                *Bilamana anda lupa password, hubungi admin karena sistem belum memiliki fitur forget password
+            </p>
         </div>
 
         <button class="btn btn-primary" type="submit">Login</button>

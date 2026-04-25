@@ -9,13 +9,13 @@
     }
     .rules-title{
         border-radius: 8px;
-        background-color: #DB8DD0;
+        background-color: var(--main);
         padding: 20px;
     }
     
     .rules-title h1{
         font-weight: 600;
-        color: #571a46;
+        color: #fafafa;
         font-size: 64px;
     }
 

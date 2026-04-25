@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MomentController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('home');
 Route::get('/notes/{id}', [MomentController::class, 'detailNote'])->name('detailNote');
@@ -24,6 +25,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class,'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/profile/{name}',[ProfileController::class,'index'])->name('profile');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/create-note', [MomentController::class, 'index'])->name('createNote');
