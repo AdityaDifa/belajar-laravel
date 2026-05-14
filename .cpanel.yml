@@ -6,3 +6,4 @@ deployment:
     - $DEPLOYPATH/artisan config:clear
     - $DEPLOYPATH/artisan cache:clear
     - $DEPLOYPATH/artisan view:clear  
+    
