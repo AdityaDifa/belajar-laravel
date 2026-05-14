@@ -43,7 +43,7 @@ class ProfileController extends Controller
         }
 
         $request->validate([
-            'name' => 'required|string|max:255|unique:profiles,name',
+            'name' => 'required|string|max:255|unique:profiles,name,' . $profile->id,
             'title' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:2000',
         ]);
