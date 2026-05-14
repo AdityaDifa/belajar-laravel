@@ -52,7 +52,7 @@
 @section('content')
 <div class="update-container">
     <div class="update-item">
-        <div class="dot"></div>
+        <div class="undot"></div>
         <div class="content">
             <small class="text-muted">14 April 2026</small>
             <h6>Update Alpha Version 0.1.0 First Release</h6>
@@ -61,11 +61,11 @@
     </div>
 
     <div class="update-item">
-        <div class="undot"></div>
+        <div class="dot"></div>
         <div class="content">
-            <small class="text-muted">Next Upate</small>
+            <small class="text-muted">14 Mei 2026</small>
             <h6>Alpha Version 0.2.0 Adding Feature</h6>
-            <p>Memperbaiki tampilan menjadi lebih modern dan menambah fitur yang berguna bagi user seperti simpan, dan lain-lain</p>
+            <p>Memperbaiki desain, dan menambah fitur yang berhubungan dengan profile </p>
         </div>
     </div>
 
@@ -74,7 +74,7 @@
         <div class="content">
             <small class="text-muted">Next Upate</small>
             <h6>Alpha Version 0.3.0 Adding Feature</h6>
-            <p>Menambah fitur interaksi antar user seperti like, dislike, melihat profile orang, dll</p>
+            <p>Menambah fitur interaksi antar user seperti like, dislike, comment, dll</p>
         </div>
     </div>
 </div>

@@ -59,7 +59,11 @@
         <p>Hallo perkenalkan nama aku Gose Clip, aku dulunya seorang clipper tetapi setelah lulus kuliah kini menjadi programmer.
             Jujur sangat disayangkan kalau channel yang sudah dibangun selama 2 tahun dibiarkan begitu saja karena sudah tidak ada waktu
             untuk membuat clip seperti dulu. Oleh sebab itu, website ini dibuat supaya para clipper dapat langsung membuat clip
-            tanpa mencari tahu momen dari sebuah stream yang sangat panjang atau dapat mencatat momen penting yang bisa digunakan sebagai mediashare.
+            tanpa mencari tahu momen atau menonton full satu stream yang panjang. Disini kalian juga dapat berbagi catatan antar clipper 
+            ataupun menaruh timestamp streamer favorit kalian disini supaya dapat digunakan untuk mediashare ataupun untuk di edit jadi clip oleh para clipper.
+        </p>
+        <p>
+            Website ini dibuat juga sebagai portofolio saya supaya sebagai bukti bahwa saya memiliki kompetensi sebagai programmer :v (pls hire me)
         </p>
         <p style="margin-top: 12px;">
             Semoga dari website yang saya bangun ini dapat bermanfaat bagi semua pihak dan silahkan hubungi saya jika terdapat masalah pada website ini

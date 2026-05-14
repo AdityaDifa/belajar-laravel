@@ -26,6 +26,7 @@ Route::post('/login', [LoginController::class,'authenticate'])->name('authentica
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/profile/{name}',[ProfileController::class,'index'])->name('profile');
+Route::get('/profile/notes/{name}',[ProfileController::class,'notes'])->name('profile.notes');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/create-note', [MomentController::class, 'index'])->name('createNote');

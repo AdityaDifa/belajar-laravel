@@ -69,18 +69,18 @@
             created at {{ $note->created_at->diffForHumans() }}</span>
     </div>
 
-    @if(auth()->check() && auth()->id() == $note->user_id)
     <div style="display: flex;justify-content:space-between; margin-top:20px;align-items:center">
         <div style="display: flex; gap: 8px;">
-            <button id="editNote" type="button" class="btn btn-primary" onclick="editNote('{{ $note->id }}')">Edit</button>
-            <button id="deleteNote" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+            @if(auth()->check() && auth()->id() == $note->user_id)
+                <button id="editNote" type="button" class="btn btn-primary" onclick="editNote('{{ $note->id }}')">Edit</button>
+                <button id="deleteNote" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+            @endif
         </div>
         <div>
-            <button><i class="bi bi-hand-thumbs-up"></i></button>
-            <button><i class="bi bi-hand-thumbs-down"></i></button>
+            <button onclick="alertLikeDislike()"><i class="bi bi-hand-thumbs-up"></i></button>
+            <button onclick="alertLikeDislike()"><i class="bi bi-hand-thumbs-down"></i></button>
         </div>
     </div>
-    @endif
 </div>
 
 
@@ -118,6 +118,10 @@
 
     function deleteNote(idNote) {
 
+    }
+
+    function alertLikeDislike(){
+        window.alert('The like and dislike features are under development');
     }
 </script>
 @endpush

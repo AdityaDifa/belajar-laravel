@@ -44,11 +44,14 @@
 @endpush
 
 @section('content')
-@auth
-<div style="display: flex;justify-content:end">
+<div style="display: flex;justify-content:end;align-items:center;gap:16px">
+    @if($countNotes > 0)
+    <a href="{{ url('/profile/notes/'. str_replace(" ","-",$profile->name)) }}">Notes<i class="bi bi-card-list" style="margin-left:4px"></i></a>
+    @endif
+    @auth
     <a href="{{ url('/profile/edit/'. str_replace(" ","-",Auth::user()->profile->name)) }}">Edit <i class="bi bi-pencil"></i></a>
+    @endauth
 </div>
-@endauth
 <section class="main-section">
     <div class="img-profile">
 
