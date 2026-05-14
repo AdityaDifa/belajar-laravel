@@ -5,7 +5,7 @@
 <style>
     .search-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: end;
         align-items: center;
     }
 
@@ -91,10 +91,6 @@
 @endpush
 @section('content')
 <div class="search-container">
-    <div>
-        <p style="font-weight: 600;">Total Notes : {{ $totalNotes }}</p>
-    </div>
-
     <form action="{{ route('home') }}" method="GET">
         <div class="input-group">
             <input type="text" name="search" class="form-control" style="width:300px"

@@ -53,6 +53,14 @@
     .active-link:hover {
         transform: scale(1.2)
     }
+
+    #dropdownMenuProfileButton {
+        background-color: var(--second);
+        padding: 8px 16px;
+        border-radius: 4px;
+        color: white;
+
+    }
 </style>
 <nav class="top-nav">
     <div class="left-nav">
@@ -65,10 +73,6 @@
     </div>
 
     <div class="right-nav">
-        <form data-url="{{ url('/profile') }}" id="form-search-profile" style="max-width: 150px;height:60px;display:flex;align-items:center">
-            <input type="text" class="form-control form-control-sm" id="search-profile" placeholder="search profile">
-        </form>
-
         @guest
         <a class="{{Route::is('register') ? 'active-link' : 'navbar-link'  }}" href="{{ route('register') }}">Register</a>
         <a class="{{Route::is('login') ? 'active-link' : 'navbar-link'  }}" href="{{ route('login') }}">Login</a>
@@ -76,10 +80,21 @@
 
         @auth
         <span style="color:white">Halo, {{ Auth::user()->profile->name }}!</span>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button class="btn btn-danger" type="submit">Logout</button>
-        </form>
+
+        <div class="dropdown">
+            <button class="btndropdown-toggle" type="button" id="dropdownMenuProfileButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>Profile Menu<i class="bi bi-chevron-double-down" style="margin-left: 4px;"></i></span>
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuProfileButton">
+                <a class="dropdown-item" href="{{ url('/profile/'. str_replace(" ","-",Auth::user()->profile->name)) }}">Profile</a>
+                <a class="dropdown-item" href="#" id="btnLogout">Logout</a>
+
+                <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+        </div>
         @endauth
     </div>
 </nav>
@@ -98,6 +113,14 @@
 
             window.location.href = baseUrl + "/" + slug;
         }
+    })
+
+    //untuk logout
+    $(document).ready(function(){
+        $('#btnLogout').on('click', function(e){
+            e.preventDefault();
+            $('#logoutForm').submit();
+        })
     })
 </script>
 @endpush

@@ -33,5 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/delete-note/{id}', [MomentController::class, 'deleteNote'])->name('note.delete');
     Route::get('/edit-note/{id}', [MomentController::class, 'editNote'])->name('note.edit');
     Route::put('/edit-note/{id}', [MomentController::class, 'putNote'])->name('note.editNote');
+
+    Route::get('/profile/edit/{name}',[ProfileController::class,'edit'])->name('profile.edit');
+    Route::patch('/profile/edit/{name}',[ProfileController::class,'editProfile'])->name('profile.submitEdit');
+
     // Semua route di dalam sini otomatis terjaga oleh satpam 'auth'
 });

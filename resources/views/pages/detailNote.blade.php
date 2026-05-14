@@ -27,13 +27,6 @@
 
 @section('content')
 
-@if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
-
-
 <div class="detail-container">
     <table class="table-detail">
         <tr>
@@ -48,12 +41,12 @@
         </tr>
         <tr>
             <td>
-                <h2 style="font-size: 16px;">Created by : {{ $note->user->name }}</h2>
+                <h2 style="font-size: 16px;">Created by : <a style="color: var(--second);text-decoration:underline" href="{{ url('/profile/'.str_replace(' ','-',$note->user->name)) }}">{{ $note->user->name }}</a></h2>
             </td>
         </tr>
         <tr>
             <td>
-                <p>Link : <a href="{{ $note->stream_url }}" target="_blank" style="color: #B33791;text-decoration:underline">{{ $note->stream_url }}</a></p>
+                <p>Link : <a href="{{ $note->stream_url }}" target="_blank" style="color: var(--second);text-decoration:underline">{{ $note->stream_url }}</a></p>
             </td>
         </tr>
         <tr>
@@ -105,9 +98,9 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
 
-                <form action="{{ route('note.delete', $note->id) }}" method="POST">
+                <form action="{{ url('/delete-note/'.$note->id) }}" method="POST">
                     @csrf
-                    @method('PUT')
+                    @method('DELETE')
                     <button type="submit" class="btn btn-danger">Ya, Hapus Sekarang</button>
                 </form>
             </div>
