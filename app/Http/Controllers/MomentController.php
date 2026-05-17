@@ -44,7 +44,7 @@ class MomentController extends Controller
     {
         $note = Moment::findOrFail($id);
 
-        if ($note->user_id !== Auth::id()) {
+        if ($note->user_id != Auth::id()) {
             // Jika bukan, kasih error 403 (Forbidden)
             abort(403, 'Waduh, kamu nggak boleh hapus catatan orang lain ya!');
         }
@@ -59,7 +59,7 @@ class MomentController extends Controller
 
         $note = Moment::findOrFail($id);
 
-        if ($note->user_id !== Auth::id()) {
+        if ($note->user_id != Auth::id()) {
             // Jika bukan, kasih error 403 (Forbidden)
             abort(403, 'Waduh, kamu nggak boleh edit catatan orang lain ya!');
         }
@@ -73,7 +73,7 @@ class MomentController extends Controller
         $note = Moment::findOrFail($id);
 
         // 2. Validasi kepemilikan lagi (Penting untuk keamanan!)
-        if ($note->user_id !== Auth::id()) {
+        if ($note->user_id != Auth::id()) {
             abort(403, 'Waduh, kamu nggak boleh edit catatan orang lain ya!');
         }
 
