@@ -76,24 +76,21 @@
 @push('scripts')
 <script>
     const urlInput = document.getElementById('stream_url');
-    const errorMsg = document.getElementById('url-error');
     const submitBtn = document.getElementById('submitButton');
+    
+    //fungsi untuk validate link stream input
+    function validateUrl() {
+        const url = urlInput.value.trim();
+        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+        const errorMsg = document.getElementById('url-error');
 
-    urlInput.addEventListener('input', function() {
-        const url = this.value;
-        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.*$/;
+        const isValid = youtubeRegex.test(url);
+        errorMsg.style.display = url && !isValid ? 'block' : 'none';
+        submitBtn.disabled = !isValid;
+    }
 
-        if (url === "") {
-            errorMsg.style.display = 'none';
-            submitBtn.disabled = true;
-        } else if (!youtubeRegex.test(url)) {
-            errorMsg.style.display = 'block';
-            submitBtn.disabled = true;
-        } else {
-            errorMsg.style.display = 'none';
-            submitBtn.disabled = false;
-        }
-    })
+    validateUrl(); // jalankan saat load
+    urlInput.addEventListener('input', validateUrl);
 
     const descInput = document.getElementById('description');
     const descErrorMsg = document.getElementById('desc-error');
