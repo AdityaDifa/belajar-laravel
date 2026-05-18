@@ -50,9 +50,7 @@
 
         <div>
             <div style="border-top: 1px solid black;margin:2px 0"></div>
-            <p style="font-size: 12px;color:red;">
-                *Bilamana anda lupa password, hubungi admin karena sistem belum memiliki fitur forget password
-            </p>
+            <span>Forgot your password ? <a href="{{ route('password.request') }}">Forget Password</a></span>
         </div>
 
         <button class="btn btn-primary" type="submit">Login</button>

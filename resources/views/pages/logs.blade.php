@@ -61,7 +61,7 @@
     </div>
 
     <div class="update-item">
-        <div class="dot"></div>
+        <div class="undot"></div>
         <div class="content">
             <small class="text-muted">14 Mei 2026</small>
             <h6>Alpha Version 0.2.0 Adding Feature</h6>
@@ -70,10 +70,19 @@
     </div>
 
     <div class="update-item">
+        <div class="dot"></div>
+        <div class="content">
+            <small class="text-muted">18 Mei 2026</small>
+            <h6>Alpha Version 0.3.0 Adding Feature</h6>
+            <p>Menambah fitur lupa password </p>
+        </div>
+    </div>
+
+    <div class="update-item">
         <div class="undot"></div>
         <div class="content">
             <small class="text-muted">Next Upate</small>
-            <h6>Alpha Version 0.3.0 Adding Feature</h6>
+            <h6>Alpha Version 0.?.0 Adding Feature</h6>
             <p>Menambah fitur interaksi antar user seperti like, dislike, comment, dll</p>
         </div>
     </div>

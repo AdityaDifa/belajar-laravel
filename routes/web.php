@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MomentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('home');
 Route::get('/notes/{id}', [MomentController::class, 'detailNote'])->name('detailNote');
@@ -24,6 +26,14 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class,'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Forgot Password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendLink'])->name('password.email');
+
+// Reset Password
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 Route::get('/profile/{name}',[ProfileController::class,'index'])->name('profile');
 Route::get('/profile/notes/{name}',[ProfileController::class,'notes'])->name('profile.notes');
