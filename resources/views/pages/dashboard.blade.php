@@ -9,6 +9,12 @@
         align-items: center;
     }
 
+    @media(max-width:768px){
+        .search-bar{
+            width: 200px !important;
+        }
+    }
+
     .notes-container {
         display: flex;
         flex-direction: column;
@@ -93,7 +99,7 @@
 <div class="search-container">
     <form action="{{ route('home') }}" method="GET">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" style="width:300px"
+            <input type="text" name="search" class="form-control search-bar" style="width:300px"
                 placeholder="Cari judul atau streamer..."
                 value="{{ request('search') }}"> 
                 <button class="btn btn-primary search-btn" type="submit" style="background-color: var(--main); border:none;">

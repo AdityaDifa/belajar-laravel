@@ -7,6 +7,7 @@
         gap: 8px;
         padding: 20px;
         background-color: white;
+        margin: 0px;
         border-radius: 8px;
         border: 1px solid var(--light-gray);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -53,6 +54,28 @@
         width: 128px;
         height: 128px;
         color: white;
+    }
+
+    @media(max-width:768px){
+        .main-section{
+            flex-direction: column;
+        }
+
+        .img-profile{
+            width:56px;
+            height:56px;
+            font-size:24px;
+            align-self:center;
+        }
+
+        .detail-list{
+            flex-direction:column;
+            align-items:start;
+        }
+
+        .detail-profile{
+            gap:20px;
+        }
     }
 
     #submitEditButton{

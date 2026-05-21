@@ -20,6 +20,40 @@
         display: flex;
         gap: 24px;
         align-items: center;
+        justify-content: end;
+    }
+
+    @media(max-width: 768px) {
+        .top-nav {
+            padding: 4px 12px;
+            top: -1px;
+        }
+
+        .left-nav a,
+        .left-nav .title-nav {
+            display: none;
+        }
+
+        .right-nav {
+            gap: 12px;
+            flex: 1
+        }
+
+        #dropdownMenuProfileButton p {
+            display: none
+        }
+
+        #sidebarButton {
+            display: block !important;
+            background-color: var(--main);
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .rotate-90 {
+            transform: rotate(90deg);
+        }
     }
 
     .title-nav {
@@ -30,6 +64,10 @@
         user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
+    }
+
+    #sidebarButton {
+        display: none;
     }
 
     .navbar-link {
@@ -64,9 +102,11 @@
 </style>
 <nav class="top-nav">
     <div class="left-nav">
+        <button id="sidebarButton"><i class="bi bi-list"></i></button>
+
         <h1 class="title-nav">Gudang Clipper</h1>
         <a class="{{Route::is('home') ? 'active-link' : 'navbar-link'  }}" href="{{ route('home') }}">Home</a>
-        <a class="{{Route::is('create-note') ? 'active-link' : 'navbar-link'  }}" href="{{ route('createNote') }}">Create Note</a>
+        <a class="{{Route::is('createNote') ? 'active-link' : 'navbar-link'  }}" href="{{ route('createNote') }}">Create Note</a>
         <a class="{{Route::is('about') ? 'active-link' : 'navbar-link'  }}" href="{{ route('about') }}">About</a>
         <a class="{{Route::is('rules') ? 'active-link' : 'navbar-link'  }}" href="{{ route('rules') }}">Rules</a>
         <a class="{{Route::is('logs') ? 'active-link' : 'navbar-link'  }}" href="{{ route('logs') }}">Logs</a>
@@ -83,7 +123,9 @@
 
         <div class="dropdown">
             <button class="btndropdown-toggle" type="button" id="dropdownMenuProfileButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span>Profile Menu<i class="bi bi-chevron-double-down" style="margin-left: 4px;"></i></span>
+                <span style="display:flex;gap:4px">
+                    <p>Profile Menu</p><i class="bi bi-chevron-double-down" style="margin-left: 4px;"></i>
+                </span>
             </button>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuProfileButton">
@@ -116,11 +158,41 @@
     })
 
     //untuk logout
-    $(document).ready(function(){
-        $('#btnLogout').on('click', function(e){
+    $(document).ready(function() {
+        $('#btnLogout').on('click', function(e) {
             e.preventDefault();
             $('#logoutForm').submit();
         })
+        
+        //untuk sidebar
+        $('#sidebarButton').on('click', function(e) {
+            e.preventDefault();
+            $('aside').toggle('slide', {
+                direction: 'left'
+            }, 400);
+            $(this).toggleClass('rotate-90')
+        })
     })
+
+
+    //Fungsi untuk menutup sidebar saat klik di luar aside
+    $(document).on('click', function(e) {
+        var $aside = $('aside');
+        var $button = $('#sidebarButton');
+
+        // Cek apakah aside sedang terbuka/terlihat
+        if ($aside.is(':visible')) {
+            // Cek apakah yang diklik BUKAN aside (dan elemen di dalamnya) AND BUKAN tombol pemicu
+            if (!$aside.is(e.target) && $aside.has(e.target).length === 0 && !$button.is(e.target) && $button.has(e.target).length === 0) {
+
+                $aside.hide('slide', {
+                    direction: 'left'
+                }, 400);
+
+                // Kembalikan rotasi tombol ke semula
+                $button.removeClass('rotate-90');
+            }
+        }
+    });
 </script>
 @endpush

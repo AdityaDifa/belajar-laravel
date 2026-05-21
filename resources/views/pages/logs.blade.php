@@ -70,11 +70,20 @@
     </div>
 
     <div class="update-item">
-        <div class="dot"></div>
+        <div class="undot"></div>
         <div class="content">
             <small class="text-muted">18 Mei 2026</small>
             <h6>Alpha Version 0.3.0 Adding Feature</h6>
             <p>Menambah fitur lupa password </p>
+        </div>
+    </div>
+
+    <div class="update-item">
+        <div class="dot"></div>
+        <div class="content">
+            <small class="text-muted">21 Mei 2026</small>
+            <h6>Alpha Version 0.4.0 Adding Feature</h6>
+            <p>Membuat UI untuk mode mobile </p>
         </div>
     </div>
 

@@ -7,6 +7,13 @@
         display: flex;
         color: white;
     }
+
+    @media(max-width:768px){
+        .bottom-footer{
+            padding: 12px 20px;
+        }
+    }
+
 </style>
 
 <footer class="bottom-footer">

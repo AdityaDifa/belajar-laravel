@@ -6,6 +6,7 @@
         display: flex;
         gap: 8px;
         padding: 20px;
+        margin: 0px;
         background-color: white;
         border-radius: 8px;
         border: 1px solid var(--light-gray);
@@ -40,6 +41,19 @@
         height: 128px;
         color: white;
     }
+
+    @media(max-width:768px){
+        .main-section{
+            flex-direction: column;
+        }
+        .img-profile{
+            width: 56px;
+            height: 56px;
+            font-size: 24px;
+            align-self: center;
+
+        }
+    }
 </style>
 @endpush
 
@@ -67,7 +81,7 @@
         </div>
 
         <div class="detail-list" style="display: flex;gap:4px;align-items:start">
-            <p>Bio : </p>
+            <p style="flex-shrink: 0;">Bio : </p>
             <p style="white-space: pre-line;">{{ $profile->bio }}</p>
         </div>
     </div>

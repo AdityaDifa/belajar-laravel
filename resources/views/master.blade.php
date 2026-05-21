@@ -26,39 +26,43 @@
     }
 
     /* 2. Logika ketika lebar layar di bawah 1000px */
-    @media (max-width: 900px) {
-        /* Munculkan pesan peringatan */
+    /* @media (max-width: 900px) {
         .mobile-warning {
             display: flex;
         }
 
-        /* Sembunyikan semua konten website utama */
         main, nav, footer {
             display: none !important;
         }
-    }
+    } */
 </style>
 
     @stack('styles')
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
 
-    <div class="mobile-warning">
+    <!-- <div class="mobile-warning">
         <h1>Oops! 🚫</h1>
         <p>Gudang Clipper saat ini hanya optimal dibuka melalui Laptop atau Desktop (layar lebar).</p>
-    </div>
+    </div> -->
 
     @include('layouts.navbar')
 
     <main>
-        @include('components.sessionMessage')
-        @yield('content')
+        <aside>
+            @include('components.sidebar')
+        </aside>
+        <section>
+            @include('components.sessionMessage')
+            @yield('content')
+        </section>
     </main>
 
     @include('layouts.footer')
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     @stack('scripts')
 
     <script>

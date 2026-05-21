@@ -23,6 +23,19 @@
         display: flex;
         flex-direction: column;
     }
+
+    @media(max-width:768px){
+        .register-container{
+            margin-top:8px;
+            
+        }
+
+        .register-form{
+            width: 100%;
+            padding:12px;
+            
+        }
+    }
 </style>
 @endpush
 

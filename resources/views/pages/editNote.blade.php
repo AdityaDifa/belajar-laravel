@@ -22,6 +22,13 @@
         width: 80%;
     }
 
+    @media(max-width:768px){
+        .note-form{
+            width: 100%;
+            padding:12px;
+        }
+    }
+
     #description {
         min-height: 200px;
         padding: 12px 15px;
@@ -76,42 +83,50 @@
 
 @push('scripts')
 <script>
-    const urlInput = document.getElementById('stream_url');
-    const errorMsg = document.getElementById('url-error');
-    const submitBtn = document.getElementById('submitButton');
-
-    urlInput.addEventListener('input', function() {
-        const url = this.value;
-        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.*$/;
-
-        if (url === "") {
-            errorMsg.style.display = 'none';
-            submitBtn.disabled = true;
-        } else if (!youtubeRegex.test(url)) {
-            errorMsg.style.display = 'block';
-            submitBtn.disabled = true;
-        } else {
-            errorMsg.style.display = 'none';
-            submitBtn.disabled = false;
+    $(document).ready(function() {
+        function validateNormalInput(idInput) {
+            return $(`#${idInput}`).val().trim() !== "";
         }
+
+        function validateStreamURL() {
+            const inputStreamURL = $('#stream_url');
+            const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+            const errorMessage = $('#url-error');
+
+            const isValid = youtubeRegex.test(inputStreamURL.val().trim());
+            errorMessage.css('display', isValid ? 'none' : 'block');
+
+            if (isValid) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function validateDescription() {
+            const descriptionInput = $('#description');
+            const descriptionErrorMessage = $('#desc-error');
+            const linkRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([^\s]+\.(com|net|org|id|io))/gi;
+
+            const isValid = linkRegex.test(descriptionInput.val().trim());
+            descriptionErrorMessage.css('display', isValid ? 'block' : 'none'); //berbalik dengan validateStreamUrl
+
+            if (isValid) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        $('#title, #streamer_name, #stream_url, #description').on('blur', function() {
+            const submitButton = $('#submitButton');
+
+            if (validateNormalInput('title') && validateNormalInput('streamer_name') && validateStreamURL() && validateDescription()) {
+                submitButton.prop('disabled', false);
+            } else {
+                submitButton.prop('disabled', true);
+            }
+        })
     })
-
-    const descInput = document.getElementById('description');
-    const descErrorMsg = document.getElementById('desc-error');
-
-    descInput.addEventListener('input', function() {
-        const text = this.value;
-        // Regex untuk mendeteksi pola link (http, https, www, atau akhiran domain umum)
-        const linkRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([^\s]+\.(com|net|org|id|io))/gi;
-
-        if (linkRegex.test(text)) {
-            descErrorMsg.style.display = 'block';
-            submitBtn.disabled = true;
-        } else {
-            descErrorMsg.style.display = 'none';
-            // Hanya aktifkan tombol jika url_streamer juga sudah valid (opsional, tergantung logika kamu)
-            submitBtn.disabled = false;
-        }
-    });
 </script>
 @endpush

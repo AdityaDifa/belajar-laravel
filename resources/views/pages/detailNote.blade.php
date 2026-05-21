@@ -22,6 +22,15 @@
     .table-detail tr td {
         padding: 4px;
     }
+
+    @media(max-width:768px){
+        .datetime-container{
+            flex-direction: column;
+            gap:4px;
+            /* align-items: end; */
+            margin-top: 8px;
+        }
+    }
 </style>
 @endpush
 
@@ -57,7 +66,7 @@
         </tr>
     </table>
 
-    <div style="display: flex;justify-content: space-between;font-size:12px">
+    <div class="datetime-container" style="display: flex;justify-content: space-between;font-size:12px">
         <span>
             @if ($note->created_at->ne($note->updated_at))
             <i class="bi bi-calendar"></i>
@@ -66,7 +75,8 @@
         </span>
         <span>
             <i class="bi bi-calendar"></i>
-            created at {{ $note->created_at->diffForHumans() }}</span>
+            created at {{ $note->created_at->diffForHumans() }}
+        </span>
     </div>
 
     <div style="display: flex;justify-content:space-between; margin-top:20px;align-items:center">
