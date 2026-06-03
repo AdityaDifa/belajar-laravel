@@ -23,10 +23,10 @@ class DashboardController extends Controller
             });
         }
 
-        $totalNotes = $query->count();
+        // $totalNotes = $query->count();
 
         $notes = $query->latest()->paginate(10)->withQueryString();
 
-        return view('pages.dashboard', compact('notes', 'totalNotes'));
+        return view('pages.dashboard', compact('notes'));
     }
 }

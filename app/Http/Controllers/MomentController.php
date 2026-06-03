@@ -35,7 +35,26 @@ class MomentController extends Controller
 
     public function detailNote($id)
     {
-        $note = Moment::with('user')->findOrFail($id);
+        $note = Moment::with('user')
+        ->withExists([
+            'likes' => function($query) {
+                if (Auth::check()) {
+                    $query->where('user_id', Auth::id());
+                } else {
+                    $query->whereRaw('1 = 0');
+                }
+            }
+        ])
+        ->withExists([
+            'dislikes' => function($query) {
+                if (Auth::check()) {
+                    $query->where('user_id', Auth::id());
+                } else {
+                    $query->whereRaw('1 = 0');
+                }
+            }
+        ])
+        ->findOrFail($id);
 
         return view('pages.detailNote', compact('note'));
     }

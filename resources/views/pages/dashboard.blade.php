@@ -92,6 +92,12 @@
     .search-btn:hover{
         background-color: var(--second) !important;
     }
+
+    .note-reaction{
+        display:flex;
+        gap:8px;
+        font-size: 12px;
+    }
 </style>
 
 @endpush
@@ -122,6 +128,10 @@
             {{ $note->stream_url }}
         </a>
         <p class="notes-description">{{ $note->description }}</p>
+        <div class="note-reaction">
+            <p>Likes {{ $note->likes }}</p>
+            <p>Dislikes {{ $note->dislikes }}</p>
+        </div>
         <div style="display: flex;justify-content: space-between;font-size:12px">
             <span>
                 @if ($note->created_at->ne($note->updated_at))

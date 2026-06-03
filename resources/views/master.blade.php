@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/main.css')  }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="{{ asset('images/icons/icon-gudang-clipper.png') }}" type="image/x-icon">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
     /* 1. Default: Sembunyikan pesan peringatan di layar lebar */
     .mobile-warning {

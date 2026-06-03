@@ -10,6 +10,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\NoteReactionController;
+
 
 Route::get('/', [DashboardController::class, 'index'])->name('home');
 Route::get('/notes/{id}', [MomentController::class, 'detailNote'])->name('detailNote');
@@ -47,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/profile/edit/{name}',[ProfileController::class,'edit'])->name('profile.edit');
     Route::patch('/profile/edit/{name}',[ProfileController::class,'editProfile'])->name('profile.submitEdit');
+
+    Route::post('api/notes/{id}/like', [NoteReactionController::class, 'like']);
+    Route::post('api/notes/{id}/dislike', [NoteReactionController::class, 'dislike']);
+
 
     // Semua route di dalam sini otomatis terjaga oleh satpam 'auth'
 });
