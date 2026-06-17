@@ -79,7 +79,7 @@
     </div>
 
     <div class="update-item">
-        <div class="dot"></div>
+        <div class="undot"></div>
         <div class="content">
             <small class="text-muted">21 Mei 2026</small>
             <h6>Alpha Version 0.4.0 Adding Feature</h6>
@@ -88,11 +88,20 @@
     </div>
 
     <div class="update-item">
+        <div class="dot"></div>
+        <div class="content">
+            <small class="text-muted">4 Juni 2026</small>
+            <h6>Alpha Version 0.5.0 Adding Feature</h6>
+            <p>Menambah fitur like, dislike, dan comment </p>
+        </div>
+    </div>
+
+    <div class="update-item">
         <div class="undot"></div>
         <div class="content">
-            <small class="text-muted">Next Upate</small>
-            <h6>Alpha Version 0.?.0 Adding Feature</h6>
-            <p>Menambah fitur interaksi antar user seperti like, dislike, comment, dll</p>
+            <small class="text-muted">Next Update</small>
+            <h6>Alpha Version 1.0.0 Release</h6>
+            <p>Release stable version</p>
         </div>
     </div>
 </div>

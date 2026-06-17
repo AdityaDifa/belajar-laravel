@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommentsMoments;
 use App\Models\Moment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,13 @@ class MomentController extends Controller
 
     public function detailNote($id)
     {
-        $note = Moment::with('user')
+        $note = Moment::with([
+            'user', 
+            'comments' => function($query) {
+                $query->latest();
+            },
+            'comments.user'
+        ])
         ->withExists([
             'likes' => function($query) {
                 if (Auth::check()) {
@@ -93,7 +100,10 @@ class MomentController extends Controller
 
         // 2. Validasi kepemilikan lagi (Penting untuk keamanan!)
         if ($note->user_id != Auth::id()) {
-            abort(403, 'Waduh, kamu nggak boleh edit catatan orang lain ya!');
+            return response()->json([
+                'success' => false,
+                'message' => 'Waduh, kamu nggak boleh hapus catatan orang lain ya!'
+            ], 403);
         }
 
         // 3. Validasi input form
@@ -114,5 +124,48 @@ class MomentController extends Controller
 
         // 5. Redirect balik ke halaman detail dengan pesan sukses
         return redirect()->route('detailNote', $note->id)->with('success', 'Catatan berhasil diperbarui!');
+    }
+
+    public function deleteComment($id){
+        $comment = CommentsMoments::findOrFail($id);
+
+        if ($comment->user_id != Auth::id()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Waduh, kamu nggak boleh hapus catatan orang lain ya!'
+            ], 403);
+        }
+
+        $comment->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'comment sukses dihapus'
+        ], 200);
+    }
+
+    public function getComments($id){
+        $moment = Moment::findOrFail($id);
+
+        $comments = $moment->comments()->with('user')->latest()->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $comments,
+            'userId'=>Auth::id()
+        ], 200);
+    }
+
+    public function postComment($id, Request $request){
+        $createComment = CommentsMoments::create([
+            'moment_id'=>$id,
+            'user_id'=>Auth::id(),
+            'comment'=>$request->comment
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message'=>'comment success posted'
+        ], 200);
     }
 }

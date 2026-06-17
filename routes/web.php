@@ -40,6 +40,8 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 Route::get('/profile/{name}',[ProfileController::class,'index'])->name('profile');
 Route::get('/profile/notes/{name}',[ProfileController::class,'notes'])->name('profile.notes');
 
+Route::get('api/notes/comment/{id}',[MomentController::class,'getComments']);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/create-note', [MomentController::class, 'index'])->name('createNote');
     Route::post('/create-note', [MomentController::class, 'store'])->name('createNote.create');
@@ -53,6 +55,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('api/notes/{id}/like', [NoteReactionController::class, 'like']);
     Route::post('api/notes/{id}/dislike', [NoteReactionController::class, 'dislike']);
 
+    Route::delete('api/notes/comment/delete/{id}', [MomentController::class,'deleteComment']);
+    Route::post('api/note/comment/post/{id}', [MomentController::class, 'postComment']);
 
     // Semua route di dalam sini otomatis terjaga oleh satpam 'auth'
 });

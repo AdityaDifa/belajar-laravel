@@ -30,4 +30,8 @@ class Moment extends Model
     {
         return $this->hasMany(DislikesMoments::class,'moment_id');
     }
+
+    public function comments(){
+        return $this->hasMany(CommentsMoments::class, 'moment_id');
+    }
 }
