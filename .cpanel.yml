@@ -1,9 +1,10 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/fhvmknhq/repositories/belajar-laravel
+    - export DEPLOYPATH=/home/fhvmknhq/belajar-laravel
     - /usr/local/bin/composer install --no-dev --optimize-autoloader --working-dir=$DEPLOYPATH
-    - $DEPLOYPATH/artisan config:clear
-    - $DEPLOYPATH/artisan cache:clear
-    - $DEPLOYPATH/artisan view:clear  
-    
+    - cp -rf $DEPLOYPATH/public/css /home/fhvmknhq/public_html/
+    - cp -rf $DEPLOYPATH/public/images /home/fhvmknhq/public_html/
+    - $DEPLOYPATH/artisan config:cache
+    - $DEPLOYPATH/artisan route:cache
+    - $DEPLOYPATH/artisan view:cache
