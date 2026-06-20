@@ -362,6 +362,11 @@
             url: `/api/notes/comment/${idNote}`,
             type: 'GET',
             success: function(response) {
+                if(!response.data || response.data.length === 0){
+                    const emptyHTML = `<p class="text-muted">There are no comments yet. Be the first to comment!</p>`
+                    return $('.comments-items-container').html(emptyHTML);
+                }
+
                 let commentHTML = '';
                 const userId = response.userId;
                 response.data.forEach(function(comment) {
@@ -395,33 +400,52 @@
         `
     }
 
-    function sendComment(e){
+    function sendComment(e) {
         e.preventDefault();
 
         const comment = $('#commentInput').val();
         const sendButton = $('#sendCommentButton');
 
-        if(comment.trim() === ''){
+        if (comment.trim() === '') {
             alert('MASUKAN PESAN COMMENT');
             return;
         }
 
         $.ajax({
-            url:`/api/note/comment/post/${idNote}`,
-            type:'POST',
-            data:{
-                comment:comment
+            url: `/api/note/comment/post/${idNote}`,
+            type: 'POST',
+            data: {
+                comment: comment
             },
-            beforeSend:function(){
+            beforeSend: function() {
                 sendButton.prop('disabled', true);
             },
-            success:function(response){
+            success: function(response) {
                 refreshComment();
             },
-            error:function(xhr){
-                console.log(xhr);
+            error: function(xhr) {
+                if (xhr.status === 401) {
+                    Swal.fire({
+                        title: 'Unauthenticated!',
+                        text: 'Kamu harus login terlebih dahulu sebelum memberi comment ini.',
+                        icon: 'warning',
+                        confirmButtonText: 'Login',
+                        showCancelButton: true,
+                        cancelButtonText: 'Batal',
+                        cancelButtonColor: '#dc3545',
+                        confirmButtonColor: '#007bff'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            if (result.isConfirmed) {
+                                var currentUrl = encodeURIComponent(window.location.href);
+
+                                window.location.href = '/login?redirect=' + currentUrl;
+                            }
+                        }
+                    });
+                }
             },
-            complete:function(){
+            complete: function() {
                 $('#commentInput').val('');
 
                 sendButton.prop('disabled', false);

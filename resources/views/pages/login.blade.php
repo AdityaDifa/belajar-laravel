@@ -42,7 +42,7 @@
 
 @section('content')
 <div class="register-container">
-    <form action="{{ route('authenticate') }}" method="POST" class="register-form">
+    <form action="" method="POST" class="register-form">
         @csrf
         <h1 style="text-align: center;">Login Form</h1>
 

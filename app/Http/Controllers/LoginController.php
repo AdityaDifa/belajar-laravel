@@ -16,14 +16,24 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
+        
+        
         if (Auth::attempt($credentials)) {
             // Jika sukses, buat ulang session (keamanan dari session fixation)
             $request->session()->regenerate();
-
+            
             $name = Auth::user()->profile->name;
-            // Arahkan ke halaman utama atau dashboard
-            return redirect()->intended('/')->with('success', 'welcome back - '. $name);
+            
+            //jika ada titipan
+            $redirect_to = $request->query('redirect');
+            if (!empty($redirect_to)) {
+                // Jika ada, langsung balikkan ke halaman semula tadi
+                return redirect(urldecode($redirect_to));
+            }else{
+                // Arahkan ke halaman utama atau dashboard
+                return redirect()->intended('/')->with('success', 'welcome back - '. $name);
+            }
+
         }
 
         return back()->withErrors([

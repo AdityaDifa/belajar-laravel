@@ -99,6 +99,33 @@
     <div class="update-item">
         <div class="undot"></div>
         <div class="content">
+            <small class="text-muted">xx xx 2026</small>
+            <h6>Alpha Version 0.6.0 Adding Feature</h6>
+            <p>Fixing desain yang belum rapi</p>
+        </div>
+    </div>
+
+    <div class="update-item">
+        <div class="undot"></div>
+        <div class="content">
+            <small class="text-muted">xx xx 2026</small>
+            <h6>Alpha Version 0.6.0 Adding Feature</h6>
+            <p>Menambah fitur bagian profile, fokus pengembangan untuk para streamer dan clipper </p>
+        </div>
+    </div>
+
+    <div class="update-item">
+        <div class="undot"></div>
+        <div class="content">
+            <small class="text-muted">xx xx 2026</small>
+            <h6>Alpha Version 0.6.0 Adding Feature</h6>
+            <p>Menambah fitur fokus untuk komunitas(fitur drop link komunitas) </p>
+        </div>
+    </div>
+
+    <div class="update-item">
+        <div class="undot"></div>
+        <div class="content">
             <small class="text-muted">Next Update</small>
             <h6>Alpha Version 1.0.0 Release</h6>
             <p>Release stable version</p>
